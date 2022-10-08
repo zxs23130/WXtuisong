@@ -98,16 +98,27 @@ def get_birthday(birthday, year, today):
     return birth_day
 
 
+# def get_ciba():
+#     url = "http://open.iciba.com/dsapi/"
+#     headers = {
+#         'Content-Type': 'application/json',
+#         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
+#                       'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
+#     }
+#     r = get(url, headers=headers)
+#     note_en = r.json()["content"]
+#     note_ch = r.json()["note"]
+#     return note_ch, note_en
+
+
+# 彩虹屁
 def get_ciba():
-    url = "http://open.iciba.com/dsapi/"
-    headers = {
-        'Content-Type': 'application/json',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
-                      'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
-    }
-    r = get(url, headers=headers)
-    note_en = r.json()["content"]
-    note_ch = r.json()["note"]
+    response = urllib.request.urlopen('https://api.shadiao.pro/chp')
+    response = response.read().decode('utf-8')
+    data = json.loads(response)
+    new_data = data['data']
+    note_en = "记得听张雪松的话"
+    note_ch = new_data['text']
     return note_ch, note_en
 
 
